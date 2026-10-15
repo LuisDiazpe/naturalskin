@@ -54,7 +54,7 @@ En `src/config.js`, objeto `CONFIG`:
 ## Imágenes
 
 - Cada placeholder lleva un número (FOTO 1 a 10). La lista de qué fotografiar está en `docs/DISENO.md` → "Mapa de fotos".
-- Para reemplazar una foto, guarda el archivo en `public/assets/img/` y pon `<img src="/assets/img/xxx.webp" alt="…" loading="lazy" width height />` dentro del `.ph`, que ya tiene `object-fit: cover`. Usa WebP, máximo unos 200 KB por foto. La foto de portada va sin `loading="lazy"`.
+- Para reemplazar una foto, guarda el archivo en `public/assets/img/` y pon `<img src={img('xxx.webp')} alt="…" loading="lazy" width height />` (`img` viene de `src/config.js` y respeta la base `/naturalskin/` de GitHub Pages) dentro del `.ph`, que ya tiene `object-fit: cover`. Usa WebP, máximo unos 200 KB por foto. La foto de portada va sin `loading="lazy"`.
 
 ## Probar
 

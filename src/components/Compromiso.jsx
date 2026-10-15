@@ -1,3 +1,4 @@
+import { img } from '../config';
 import { Icon, WaLink } from './ui';
 
 const PROMESAS = [
@@ -22,7 +23,7 @@ export default function Compromiso() {
           ))}
         </div>
         <div className="welcome reveal">
-          <img className="float" src="/assets/img/logo-monograma-160.png" alt="" />
+          <img className="float" src={img('logo-monograma-160.png')} alt="" />
           <div className="welcome-text">
             <p className="serif">Sé una de nuestras <em>primeras clientas</em></p>
             <p>[Si hay una promoción de apertura, va aquí. Si no, se borra esta línea.]</p>

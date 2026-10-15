@@ -1,3 +1,4 @@
+import { img } from '../config';
 import { Icon, WaLink } from './ui';
 
 export default function Hero() {
@@ -22,12 +23,12 @@ export default function Hero() {
         <div className="blob blob-lila drift" aria-hidden="true"></div>
         <div className="blob blob-luz drift-rev" aria-hidden="true"></div>
         <div className="hero-arch">
-          {/* FOTO 1 · reemplazar por <img src="/assets/img/portada.webp" alt="..." /> */}
+          {/* FOTO 1 · reemplazar por <img src={img('portada.webp')} alt="..." /> */}
           <div className="ph"><div className="ph-tag"><b>Foto 1 · Portada</b>Rostro con piel luminosa, luz cálida y fondo rosa claro. Vertical 4:5.</div></div>
         </div>
         <div className="seal float-slow" aria-hidden="true">
           <svg className="seal-ring spin" width="140" height="140" viewBox="0 0 140 140" fill="none" stroke="#C29B3C" strokeWidth="1"><circle cx="70" cy="70" r="68" strokeDasharray="2 7" /></svg>
-          <div className="seal-disc"><img src="/assets/img/logo-monograma-160.png" alt="" /></div>
+          <div className="seal-disc"><img src={img('logo-monograma-160.png')} alt="" /></div>
         </div>
         <div className="float-card float">
           <span className="ic"><Icon id="leaf" size={22} /></span>

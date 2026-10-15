@@ -1,3 +1,4 @@
+import { img } from '../config';
 import { Status, TelLink, WaLink } from './ui';
 
 export default function Footer() {
@@ -5,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <img className="footer-logo" src="/assets/img/logo-natural-skin.png" alt="Natural Skin" width="150" height="161" />
+          <img className="footer-logo" src={img('logo-natural-skin.png')} alt="Natural Skin" width="150" height="161" />
           <p className="muted" style={{ marginTop: 14 }}>Cuidado de la piel en un espacio cálido y natural.</p>
         </div>
         <div>

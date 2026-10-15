@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { img } from '../config';
 import { WaLink } from './ui';
 
 const LINKS = [
@@ -23,7 +24,7 @@ export default function Header() {
     <header className="header">
       <div className="container header-row">
         <a className="brand" href="#inicio" aria-label="Natural Skin, inicio">
-          <img src="/assets/img/logo-monograma-160.png" alt="" width="52" height="54" />
+          <img src={img('logo-monograma-160.png')} alt="" width="52" height="54" />
           <span>Natural Skin</span>
         </a>
         <nav className="nav" aria-label="Principal">
