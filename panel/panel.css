@@ -194,6 +194,22 @@ textarea{resize:vertical}
 .detalle dt{color:var(--madera);font-size:13px;padding-top:2px}
 .detalle dd{margin:0;color:var(--madera-oscura)}
 .acciones-wa{display:flex;gap:8px;flex-wrap:wrap}
+.avisos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.aviso-item{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;border:1px solid var(--borde);border-radius:12px;padding:8px 12px}
+.aviso-item b{font-weight:500;color:var(--madera-oscura)}
+.aviso-item span{flex:1;color:var(--madera)}
+.aviso-item.ok{background:var(--ate-bg);border-color:var(--ate-bd)}
+.aviso-item.ok span{color:var(--ate-tx)}
+.aviso-item.cola{background:var(--pen-bg);border-color:var(--pen-bd)}
+.aviso-item.cola span{color:var(--pen-tx)}
+.aviso-item.error{background:#FBE4EC;border-color:var(--con-bd)}
+.aviso-item.error span{color:#9E2350}
+.acciones-wa{margin-top:10px}
+.bot-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--can-tx);background:var(--can-bg);border:1px solid var(--can-bd);border-radius:var(--r-pill);padding:4px 10px;white-space:nowrap}
+.bot-pill i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.bot-pill.on{color:var(--ate-tx);background:var(--ate-bg);border-color:var(--ate-bd)}
+.tachado{text-decoration:line-through;color:var(--can-tx)}
+.mensaje-previo{white-space:pre-wrap;font:400 14px/1.5 var(--sans);color:var(--madera-oscura);background:#EFF7EC;border:1px solid #D4E8CE;border-radius:12px 12px 12px 4px;padding:12px 14px;margin:0}
 
 /* ---------- Selector de servicios ---------- */
 .picker{border:1px solid var(--borde-fuerte);border-radius:14px;padding:12px;background:#FFFDFC}

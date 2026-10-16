@@ -7,6 +7,7 @@ import VistaSemana from './VistaSemana';
 import VistaTodas from './VistaTodas';
 import CitaDetalle from './CitaDetalle';
 import CitaForm from './CitaForm';
+import AvisoReprogramada from './AvisoReprogramada';
 
 const VISTAS = [['dia', 'Día'], ['semana', 'Semana'], ['todas', 'Todas']];
 
@@ -20,6 +21,7 @@ export default function Agenda() {
   const [mostrarInactivas, setMostrarInactivas] = useState(false);
   const [detalle, setDetalle] = useState(null);
   const [form, setForm] = useState(null);   // { cita } para reprogramar o { inicial: { fecha, hora } } para crear
+  const [reprogramada, setReprogramada] = useState(null);
 
   const recargar = useCallback(() => setRev((r) => r + 1), []);
   const hoy = hoyLima();
@@ -124,8 +126,9 @@ export default function Agenda() {
       )}
       {form && (
         <CitaForm {...form} onCerrar={() => setForm(null)}
-          onGuardada={(f) => { setForm(null); setFecha(f); recargar(); }} />
+          onGuardada={(f, movida) => { setForm(null); setFecha(f); setReprogramada(movida); recargar(); }} />
       )}
+      {reprogramada && <AvisoReprogramada cita={reprogramada} onCerrar={() => setReprogramada(null)} />}
     </section>
   );
 }

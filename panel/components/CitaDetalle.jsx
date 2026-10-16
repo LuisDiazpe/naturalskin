@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { supabase, mensajeError, formatoTelefono } from '../supabase';
-import { ESTADOS, fechaDe, fechaLarga, horaDe, soles, waLink, waMensaje } from '../formato';
+import { ESTADOS, INACTIVOS, fechaDe, fechaLarga, horaDe, soles } from '../formato';
+import { encolarAviso } from '../bot';
 import Modal from './Modal';
+import AvisosCita from './AvisosCita';
 import { IconoWhatsApp } from './Iconos';
 
 export default function CitaDetalle({ cita, onCerrar, onReprogramar, onCambio }) {
   const [estado, setEstado] = useState(cita.estado);
   const [error, setError] = useState('');
   const tel = cita.clientes?.telefono;
+
+  const enviar = async (tipo) => {
+    const { error } = await encolarAviso(cita.id, tipo);
+    setError(error ? mensajeError(error) : '');
+  };
 
   const cambiar = async (v) => {
     if (v === estado) return;
@@ -24,7 +31,7 @@ export default function CitaDetalle({ cita, onCerrar, onReprogramar, onCambio })
         <dt>Servicio</dt><dd>{cita.servicios?.nombre} <span className="muted">· {soles(cita.servicios?.precio)}</span></dd>
         <dt>Fecha</dt><dd>{fechaLarga(fechaDe(cita.inicio))}</dd>
         <dt>Hora</dt><dd>{horaDe(cita.inicio)} – {horaDe(cita.fin)}</dd>
-        <dt>Celular</dt><dd><a href={waLink(tel)} target="_blank" rel="noopener">{formatoTelefono(tel)}</a></dd>
+        <dt>Celular</dt><dd>{formatoTelefono(tel)}</dd>
         {cita.notas && <><dt>Notas</dt><dd>{cita.notas}</dd></>}
         <dt>Origen</dt><dd>{cita.origen === 'bot' ? 'Bot de WhatsApp' : 'Panel'}</dd>
       </dl>
@@ -38,11 +45,14 @@ export default function CitaDetalle({ cita, onCerrar, onReprogramar, onCambio })
       </div>
       {error && <p className="error" role="alert">{error}</p>}
 
-      <p className="etiqueta">WhatsApp</p>
-      <div className="acciones-wa">
-        <a className="btn btn-ghost btn-sm" href={waLink(tel, waMensaje(cita, 'confirmacion'))} target="_blank" rel="noopener"><IconoWhatsApp />Enviar confirmación</a>
-        <a className="btn btn-ghost btn-sm" href={waLink(tel, waMensaje(cita, 'recordatorio'))} target="_blank" rel="noopener"><IconoWhatsApp />Enviar recordatorio</a>
-      </div>
+      <p className="etiqueta">Mensajes por WhatsApp (los envía el bot)</p>
+      <AvisosCita citaId={cita.id} />
+      {!INACTIVOS.includes(estado) && estado !== 'atendida' && (
+        <div className="acciones-wa">
+          <button type="button" className="btn btn-ghost btn-sm" onClick={() => enviar('confirmacion')}><IconoWhatsApp />Enviar confirmación</button>
+          <button type="button" className="btn btn-ghost btn-sm" onClick={() => enviar('recordatorio')}><IconoWhatsApp />Enviar recordatorio</button>
+        </div>
+      )}
 
       <div className="modal-pie">
         <button type="button" className="btn btn-ghost" onClick={onCerrar}>Cerrar</button>

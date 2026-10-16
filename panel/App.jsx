@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase';
+import { useBotEstado } from './bot';
 import Login from './components/Login';
 import Agenda from './components/Agenda';
 import Servicios from './components/Servicios';
@@ -10,6 +11,16 @@ const VISTAS = [
   ['servicios', 'Servicios'],
   ['bloqueos', 'Bloqueos']
 ];
+
+function EstadoBot() {
+  const bot = useBotEstado();
+  if (!bot.cargado) return null;
+  return (
+    <span className={`bot-pill${bot.activo ? ' on' : ''}`} title={bot.activo ? `Conectado como ${bot.numero}` : 'Los mensajes quedan en cola hasta que el bot se conecte'}>
+      <i aria-hidden="true" />Bot WhatsApp {bot.activo ? 'conectado' : 'desconectado'}
+    </span>
+  );
+}
 
 export default function App() {
   const [session, setSession] = useState(undefined);
@@ -33,6 +44,7 @@ export default function App() {
             <span>Natural Skin <small>Panel de citas</small></span>
           </div>
           <div className="usuario">
+            <EstadoBot />
             <span>{session.user.email}</span>
             <button className="btn btn-ghost btn-sm" onClick={() => supabase.auth.signOut()}>Salir</button>
           </div>

@@ -1,0 +1,17 @@
+{
+  "name": "naturalskin-bot",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Bot de WhatsApp de Natural Skin: envía confirmaciones, reprogramaciones y recordatorios desde la cola de avisos de Supabase",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "baileys": "^7.0.0-rc14",
+    "pino": "^10.4.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}

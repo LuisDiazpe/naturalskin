@@ -4,6 +4,7 @@ import { fechaHora, horariosLibres, hoyLima, rangoDia, ESTADOS_ACTIVOS } from '.
 import { fechaCorta, fechaDe, horaDe } from '../formato';
 import Modal from './Modal';
 import ServicioPicker from './ServicioPicker';
+import { encolarAviso } from '../bot';
 
 // Crear una cita nueva (`inicial`) o reprogramar una existente (`cita`)
 export default function CitaForm({ cita, inicial, onCerrar, onGuardada }) {
@@ -13,7 +14,7 @@ export default function CitaForm({ cita, inicial, onCerrar, onGuardada }) {
   const [f, setF] = useState(() => (editando
     ? { nombre: cita.clientes?.nombre ?? '', telefono: formatoTelefono(cita.clientes?.telefono ?? ''), servicio: cita.servicio_id,
         fecha: fechaDe(cita.inicio), hora: horaDe(cita.inicio), notas: cita.notas ?? '' }
-    : { nombre: '', telefono: '', servicio: null, fecha: inicial.fecha, hora: inicial.hora ?? '', notas: '' }));
+    : { nombre: '', telefono: '', servicio: null, fecha: inicial.fecha, hora: inicial.hora ?? '', notas: '', confirmar: true }));
   const [libres, setLibres] = useState([]);
   const [error, setError] = useState('');
   const [guardando, setGuardando] = useState(false);
@@ -66,15 +67,23 @@ export default function CitaForm({ cita, inicial, onCerrar, onGuardada }) {
       cliente_id: cliente.id, servicio_id: servicio.id,
       inicio: inicio.toISOString(), fin: fin.toISOString(), notas: f.notas.trim() || null
     };
-    const { error: e2 } = editando
+    const { data: guardada, error: e2 } = editando
       // Al reprogramar, una cita cancelada, atendida o "no asistió" vuelve a quedar confirmada
       ? await supabase.from('citas').update({
           ...datos, recordatorio_enviado: false,
           estado: cita.estado === 'pendiente' ? 'pendiente' : 'confirmada'
         }).eq('id', cita.id)
-      : await supabase.from('citas').insert({ ...datos, estado: 'confirmada', origen: 'panel' });
+      : await supabase.from('citas').insert({ ...datos, estado: 'confirmada', origen: 'panel' }).select('id').single();
+    if (e2) { setError(mensajeError(e2)); setGuardando(false); return; }
+    // Cita nueva: el bot le envía la confirmación por WhatsApp (la reprogramación la encola la base de datos)
+    if (!editando && f.confirmar) await encolarAviso(guardada.id, 'confirmacion');
     setGuardando(false);
-    if (e2) setError(mensajeError(e2)); else onGuardada(f.fecha);
+    // Si cambió la fecha u hora, la agenda muestra el aviso para confirmar a la clienta
+    const movida = editando && inicio.getTime() !== new Date(cita.inicio).getTime();
+    onGuardada(f.fecha, movida ? {
+      id: cita.id, inicio: datos.inicio, fin: datos.fin, antes: cita.inicio,
+      clientes: { nombre: f.nombre.trim() || null, telefono }, servicios: { nombre: servicio.nombre }
+    } : null);
   };
 
   return (
@@ -106,6 +115,10 @@ export default function CitaForm({ cita, inicial, onCerrar, onGuardada }) {
           </div>
         )}
         <label>Notas<textarea rows="2" value={f.notas} onChange={set('notas')} /></label>
+        {!editando && (
+          <label className="check"><input type="checkbox" checked={f.confirmar} onChange={(e) => setF((v) => ({ ...v, confirmar: e.target.checked }))} />Enviarle la confirmación por WhatsApp (bot)</label>
+        )}
+        {editando && <p className="muted">Al guardar, el bot le enviará a la clienta su nuevo horario por WhatsApp.</p>}
         {error && <p className="error" role="alert">{error}</p>}
         <div className="modal-pie">
           <button type="button" className="btn btn-ghost" onClick={onCerrar}>Cancelar</button>

@@ -70,3 +70,12 @@ Segunda página del mismo proyecto Vite, **solo para el personal** (login con Su
 - `.env`: solo claves **públicas** de Supabase. La service_role key nunca va en el frontend ni en el repo.
 - Una sola cabina: la base de datos impide que dos citas activas se crucen.
 - Dev: `npm run dev` → http://localhost:5173/panel/
+
+## Bot de WhatsApp (`bot/`)
+
+Proceso Node aparte (no corre en GitHub Pages). Lee la cola `avisos` de Supabase con la **secret key** (`bot/.env`, nunca en el repo) y la envía con Baileys (WhatsApp Web, no oficial). Instrucciones en `bot/README.md`.
+
+- El panel **no abre chats de WhatsApp**: encola avisos (`panel/bot.js`) y muestra su estado (`AvisosCita.jsx`). El trigger `citas_avisar_reprogramacion` encola la reprogramación.
+- Textos de los mensajes: `shared/mensajes.js` (los usa el bot y la vista previa del panel).
+- `bot_estado`: latido del bot; el panel muestra "Bot WhatsApp conectado/desconectado".
+- `SOLO_NUMEROS` en `bot/.env` = modo prueba (solo envía a esos números).
