@@ -1,7 +1,7 @@
 // ---------- Configuración: completar con los datos reales ----------
 export const CONFIG = {
-  whatsapp: '51XXXXXXXXX',          // código de país 51 + número, sin espacios ni "+"
-  telefono: '+51XXXXXXXXX',          // para el enlace tel:
+  whatsapp: '51921460505',          // código de país 51 + número, sin espacios ni "+"
+  telefono: '+51921460505',          // para el enlace tel:
   mensajeWhatsApp: 'Hola Natural Skin, quiero reservar una evaluación.',
   zonaHoraria: 'America/Lima',
   // 0 = domingo … 6 = sábado. null = cerrado. 'cita' = solo con cita previa.

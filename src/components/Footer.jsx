@@ -11,7 +11,7 @@ export default function Footer() {
         </div>
         <div>
           <p className="kick">Visítanos</p>
-          <p className="muted">[DIRECCIÓN]<br />[DISTRITO], Lima<br />[REFERENCIA]</p>
+          <p className="muted">Av. José Pardo 1101<br />Miraflores, Lima<br />[REFERENCIA]</p>
         </div>
         <div>
           <p className="kick">Horario</p>
@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
         <div>
           <p className="kick">Contacto</p>
-          <p className="muted"><WaLink>WhatsApp [NÚMERO]</WaLink><br /><TelLink>Teléfono [TELÉFONO]</TelLink><br />[CORREO]</p>
+          <p className="muted"><WaLink>WhatsApp 921 460 505</WaLink><br /><TelLink>Llamadas 921 460 505</TelLink><br />[CORREO]</p>
         </div>
       </div>
       <p className="copy">© {new Date().getFullYear()} Natural Skin · Todos los derechos reservados</p>

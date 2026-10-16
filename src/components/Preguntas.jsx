@@ -5,7 +5,7 @@ const FAQ = [
   ['¿Necesito reservar cita?', 'Te recomendamos reservar por WhatsApp para asegurar tu horario. Los domingos la cita previa es obligatoria.'],
   ['¿Cómo sé qué tratamiento es para mí?', 'En tu primera visita evaluamos tu piel y te recomendamos el tratamiento que más te conviene.'],
   ['¿Cuánto dura una sesión?', 'Depende del tratamiento: [DURACIÓN APROXIMADA].'],
-  ['¿Qué medios de pago aceptan?', '[EFECTIVO, TARJETA, YAPE, PLIN…]']
+  ['¿Qué medios de pago aceptan?', 'Yape, Plin y efectivo.']
 ];
 
 export default function Preguntas() {

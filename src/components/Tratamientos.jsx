@@ -52,7 +52,7 @@ export default function Tratamientos() {
         <div className="sec-head reveal">
           <p className="kick">Tratamientos</p>
           <h2 className="h2">Todo lo que tu piel <em>necesita</em></h2>
-          <p className="muted">Limpiezas, tratamientos faciales y corporales, depilación láser y sueroterapia. Elige una categoría.</p>
+          <p className="muted">Limpiezas, HIFU, tratamientos regenerativos, corporales y sueroterapia. Elige una categoría.</p>
         </div>
 
         <div className="tabs" role="tablist" aria-label="Categorías de tratamientos">

@@ -1,6 +1,6 @@
 # Contenido · Natural Skin
 
-Los textos definitivos ya están en `index.html`. Este archivo los resume y marca lo que falta. Todo lo que aparece entre `[CORCHETES]` es un dato pendiente: no lo inventes.
+Los textos definitivos están en `src/components/` y `src/data/tratamientos.js`. Este archivo los resume y marca lo que falta. Todo lo que aparece entre `[CORCHETES]` es un dato pendiente: no lo inventes.
 
 ## Datos del negocio
 
@@ -10,9 +10,9 @@ Los textos definitivos ya están en `index.html`. Este archivo los resume y marc
 | Rubro | Estética facial y corporal |
 | Ciudad | Lima, Perú |
 | Antigüedad | Abrió hace unos 2 meses (octubre de 2026) |
-| Dirección | [DIRECCIÓN], [DISTRITO], [REFERENCIA] |
-| WhatsApp | [NÚMERO] → `CONFIG.whatsapp` en `js/main.js` |
-| Teléfono | [TELÉFONO] → `CONFIG.telefono` |
+| Dirección | ✅ Av. José Pardo 1101, Miraflores · [REFERENCIA] |
+| WhatsApp y teléfono | ✅ 921 460 505 → `CONFIG.whatsapp` / `CONFIG.telefono` en `src/config.js` |
+| Medios de pago | ✅ Yape, Plin y efectivo |
 | Correo | [CORREO] |
 | Redes sociales | Todavía no tiene. No se muestran. |
 
@@ -27,68 +27,61 @@ Los textos definitivos ya están en `index.html`. Este archivo los resume y marc
 
 ## Tratamientos
 
-Todos llevan "Desde [PRECIO]" hasta que el negocio envíe los precios.
+✅ **Fuente: lista de servicios y precios de la dueña (Excel, 15/10/2026).** Reemplaza por completo al catálogo anterior y a los precios de las notas a mano del 14/10. Lo que no está en esta lista se quitó de la web (limpiezas Premium, bactericida, Elixir y para hombres; Botox, Nabota, NCTF, Astrodome, depilación láser y los packs Hidraglow, Renovación Celular, Armonización Deluxe y HIFU Brazos). Los datos están en `src/data/tratamientos.js`.
+
+### Tratamiento estrella · HIFU 25D MAX (sección `#hifu`)
+S/ 350, rostro completo + papada. 4 tecnologías en 1 tratamiento:
+1. HIFU: actúa en las capas profundas de la piel (SMAS) y estimula colágeno y elastina.
+2. Radiofrecuencia: calienta la dermis de forma controlada; mejora firmeza y textura.
+3. EMS: activa y tonifica las fibras musculares para redefinir contornos.
+4. Ultrasonido focalizado: ayuda a modelar la grasa localizada. **La dueña lo llama "Liposonix"; no lo ponemos** porque es marca registrada de otra empresa.
+- Beneficios en rostro: efecto lifting sin cirugía, eleva cejas, define el óvalo facial, reduce papada, suaviza líneas de expresión.
+- Sin bisturí ni tiempo de reposo. Resultados inmediatos o progresivos hasta 3 meses después.
 
 ### Limpiezas (FOTO 2)
-| Tratamiento | Descripción |
+| Tratamiento | Precio |
 |---|---|
-| Limpieza Premium | Retira impurezas y células muertas, y termina con luz LED: azul para calmar la piel o roja para estimular el colágeno. |
-| Limpieza profunda de cutis | Extracción de puntos negros e impurezas para una piel limpia, fresca y respirable. |
-| Hydrafacial® ⚠️ | Limpia, exfolia e hidrata en una sola sesión, sin tiempo de recuperación. |
-| Limpieza bactericida | Pensada para pieles con brotes: limpia en profundidad y ayuda a controlar las bacterias. |
-| Limpieza Elixir | [DESCRIPCIÓN] |
-| Limpieza profunda para hombres | Adaptada a la piel masculina, más gruesa y con mayor producción de grasa. |
+| Hidrofacial 7 en 1 · Premium | S/ 180 |
+| Limpieza facial profunda + radiofrecuencia | S/ 199 |
+| Limpieza facial + fototerapia + PRP | S/ 200 |
+| Facial punta de diamante | S/ 199 |
+| Limpieza facial hidratante | S/ 99 |
 
-### ✅ Datos confirmados por la dueña (notas escritas a mano, 14/10/2026)
-
-**Tratamiento estrella · HIFU 25D MAX (rostro)**: S/ 380, rostro + papada. Tiene su propia sección destacada (`#hifu`) y también una tarjeta en Faciales.
-- 3 tecnologías en 1 tratamiento: levanta, reafirma y define.
-  1. HIFU: lifting profundo, actúa en las capas profundas.
-  2. Radiofrecuencia: reafirma y tensa, estimula el colágeno y mejora la elasticidad.
-  3. EMS: tonifica y define, estimula los músculos y mejora la firmeza.
-- Sin tiempo de recuperación. Sin cirugía.
+El equipo del Hidrofacial es un "Hydrofacial Plus N7" (hidrodermoabrasión, O2 Hydroxygen, RF/EMS, ultrasonido, martillo frío-calor y spray de oxígeno). **No es el Hydrafacial® de marca**, por eso en la web se escribe "Hidrofacial 7 en 1", sin ®.
 
 ### Faciales (FOTO 3)
-| Tratamiento | Descripción / incluye | Precio |
-|---|---|---|
-| HIFU 25D MAX · Rostro ✅ | HIFU, radiofrecuencia y EMS | **S/ 380** (rostro + papada) |
-| Hidraglow ✅❓ | Limpieza facial profunda + microneedling con activos | **S/ 250** |
-| Renovación Celular ✅❓ | 3 sesiones de limpieza facial profunda + microneedling con PRP | **S/ 450** |
-| Armonización Facial Deluxe ✅ | 5 sesiones de afinamiento facial + 3 aplicaciones de enzimas | **S/ 700** |
-| Botox · 1 zona o full face | Suaviza las líneas de expresión de frente, entrecejo y patas de gallo. | [PRECIO] |
-| Nabota · 1 zona o full face | Toxina botulínica que relaja las arrugas de expresión con un resultado natural. | [PRECIO] |
-| Plasma rico en plaquetas | Usa los factores de crecimiento de tu propia sangre para mejorar la calidad de la piel. | [PRECIO] |
-| NCTF® 135 HA ⚠️ | Mesoterapia con ácido hialurónico y vitaminas que hidrata y revitaliza la piel. | [PRECIO] |
+| Tratamiento | Precio |
+|---|---|
+| HIFU 25D MAX · Rostro completo + papada | S/ 350 |
+| HIFU 25D MAX · Rostro + PRP | S/ 400 |
+| HIFU 25D MAX · Eyes | S/ 250 |
+| Armonización facial · ácido hialurónico | S/ 450 |
 
-❓ = nombre leído de una nota escrita a mano. Confirmar la ortografía ("Hidraglow" y "Renovación Celular").
-El antiguo "Ultralift HIFU" se **reemplazó** por HIFU 25D MAX, que es el equipo real del negocio.
+### Regenerativos (FOTO 3)
+| Tratamiento | Precio |
+|---|---|
+| Plasma rico en plaquetas + máscara hidratante | S/ 150 |
+| PRP + Dermapen | S/ 150 |
+| PRP + exosomas + Dermapen | S/ 450 |
+| PDRN + Dermapen | S/ 400 |
+| PRP capilar | [PRECIO] |
 
 ### Corporales (FOTO 4)
-| Tratamiento | Descripción / incluye | Precio |
-|---|---|---|
-| HIFU 25D MAX Body ✅ | Activa y define la grasa localizada de abdomen y cintura. Remodelación corporal focalizada, reduce grasa localizada, reafirma la piel, no invasivo. | [PRECIO] (no vino en la nota) |
-| HIFU 25D en Brazos ✅ | Brazos más firmes y definidos: reafirma y tonifica, mejora la flacidez y el contorno, estimula colágeno y elastina. **Pack:** HIFU + carboxiterapia + ondas rusas. | **S/ 200** |
-| Levantamiento de glúteos con peptonas ✅ | Resalta, tonifica y reafirma: aumento y tonificación localizada, estimulación dermotensora, acción reconstructiva muscular. **Pack:** 10 aplicaciones de peptonas + ondas rusas + vacumterapia + carboxiterapia. | **S/ 380** |
-| Hidrolipoclasia enzimática ✅ | Modela tu figura sin cirugía: mejora el aspecto de la piel, reduce la grasa localizada y las medidas de abdomen, rompe la grasa resistente. **Pack:** inyección + carboxiterapia + ultracavitación, 3 sesiones. | **S/ 300** |
-| Astrodome | [DESCRIPCIÓN] | [PRECIO] |
-
-La nota dice "tecnología corporal tipo Liposonix". **No lo pusimos** en la web: Liposonix es una marca registrada de otra empresa, y compararse con ella puede traer problemas.
-
-### Depilación láser (FOTO 5)
-| Zona | Descripción |
+| Tratamiento | Precio |
 |---|---|
-| Axilas | Reduce el vello de forma progresiva, sesión a sesión. |
-| Bikini brasilero | Depilación completa de la zona íntima con láser. |
-| Otras zonas | [ZONAS DISPONIBLES] |
+| HIFU 25D MAX · Corporal (abdomen / cintura) | S/ 400 |
+| Hidrolipoclasia (3 sesiones) | S/ 350 |
+| Levantamiento de glúteos con peptonas | S/ 350 |
 
 ### Sueroterapia (FOTO 6)
-| Tratamiento | Descripción |
+| Tratamiento | Precio |
 |---|---|
-| Sueroterapia | Sueros con vitaminas y minerales aplicados por personal de salud. [TIPOS DE SUERO] |
+| Plasma + vitamina B12 | S/ 159 |
+| Cóctel de vida + vitamina B12 | S/ 180 |
+| Cóctel anti aging | S/ 180 |
+| Vitamina C | S/ 160 |
 
-⚠️ = marca registrada. Confirmar que se usa el equipo o producto original (ver `PENDIENTES.md`).
-
-Cuando lleguen los datos, cada tratamiento puede tener un **precio "desde"** y, si aplica, variantes (por ejemplo "1 zona: S/ X · Full face: S/ Y").
+Las descripciones de las tarjetas solo repiten lo que dice el nombre del servicio. Cuando la dueña mande qué hace cada uno, se reemplazan.
 
 ## Preguntas frecuentes
 
@@ -96,11 +89,9 @@ Cuando lleguen los datos, cada tratamiento puede tener un **precio "desde"** y, 
 2. **¿Necesito reservar cita?** Te recomendamos reservar por WhatsApp para asegurar tu horario. Los domingos la cita previa es obligatoria.
 3. **¿Cómo sé qué tratamiento es para mí?** En tu primera visita evaluamos tu piel y te recomendamos el tratamiento que más te conviene.
 4. **¿Cuánto dura una sesión?** Depende del tratamiento: [DURACIÓN APROXIMADA].
-5. **¿Qué medios de pago aceptan?** [EFECTIVO, TARJETA, YAPE, PLIN…]
+5. **¿Qué medios de pago aceptan?** Yape, Plin y efectivo. ✅
 
 ## Otros marcadores en la página
 
 - Portada: "Productos [MARCAS]" → marcas de productos con las que trabajan.
 - Bloque "primeras clientas": "[Si hay una promoción de apertura…]" → la promoción, o borrar la línea.
-- `<title>` y meta: "[DISTRITO]".
-- JSON-LD (`<head>`): teléfono y dirección.

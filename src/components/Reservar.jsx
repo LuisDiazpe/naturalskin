@@ -15,7 +15,7 @@ export default function Reservar() {
           <Status className="status-pill" />
           <div className="cta-btns">
             <WaLink className="btn btn-primary"><Icon id="chat" />Escribir por WhatsApp</WaLink>
-            <TelLink className="btn btn-ghost-light">Llamar [TELÉFONO]</TelLink>
+            <TelLink className="btn btn-ghost-light">Llamar 921 460 505</TelLink>
           </div>
         </div>
       </div>
