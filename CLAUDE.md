@@ -59,3 +59,14 @@ En `src/config.js`, objeto `CONFIG`:
 ## Probar
 
 `npm run dev` y revísalo a 1440 px y a 390 px. `npm run build` genera el sitio estático en `dist/`.
+
+## Panel interno de citas (`/panel/`)
+
+Segunda página del mismo proyecto Vite, **solo para el personal** (login con Supabase). No se enlaza desde la landing.
+
+- `panel/`: React. `components/Agenda.jsx` (semana + citas del día, tiempo real), `CitaForm.jsx` (nueva cita con horarios libres), `Servicios.jsx` (precio, duración, activo), `Bloqueos.jsx`.
+- `shared/agenda.js`: cálculo de horarios libres en hora de Lima (UTC-5). Lo usan el panel y el bot.
+- `supabase/schema.sql`: tablas, RLS (solo usuarios en la tabla `personal`) y datos iniciales. Pasos en `supabase/README.md`.
+- `.env`: solo claves **públicas** de Supabase. La service_role key nunca va en el frontend ni en el repo.
+- Una sola cabina: la base de datos impide que dos citas activas se crucen.
+- Dev: `npm run dev` → http://localhost:5173/panel/
